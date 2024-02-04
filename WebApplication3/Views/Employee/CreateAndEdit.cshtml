@@ -1,0 +1,24 @@
+﻿@model WebApplication3.Models.Employee
+@{
+}
+
+
+<h1 class="text-center fw-bold">Employee Details</h1>
+
+<div class="container mt-5 border border-dark p-5">
+    <form asp-action="CreateAndEdit" asp-controller="Employee" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" asp-for="Name" class="form-control border border-secondary">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" asp-for="Email" class="form-control border border-secondary">
+            <label for="empid" class="form-label">EmployeeId</label>
+            <input type="number" asp-for="EmployeeId" class="form-control border border-secondary">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="number" asp-for="Salary" class="form-control border border-secondary">
+            <label for="location" class="form-label">JobLocation</label>
+            <input type="text" asp-for="JobLocation" class="form-control border border-secondary">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

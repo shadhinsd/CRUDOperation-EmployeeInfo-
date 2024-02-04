@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebApplication3.Models.Employee>
+@{
+    int idNo = 1;
+}
+
+
+<h1 class="text-center fw-bold">Employee Table View</h1>
+<a asp-action="CreateAndEdit" asp-controller="Employee" class="btn btn-info m-3">Add Employee</a>
+<div class="container mt-3">
+	<table class="table table-success table-striped">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">EmpoyeeId</th>
+                <th scope="col">Salary</th>
+                <th scope="col">JobLocation</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+               @foreach (var item in Model)
+                {
+                 <tr class="text-center">
+                    <td>@idNo</td>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.EmployeeId</td>
+                    <td>@item.Salary</td>
+                    <td>@item.JobLocation</td>
+                    <td>
+                        <a asp-action="CreateAndEdit" asp-controller="Employee" asp-route-id="@item.Id"class="btn btn-success">Edit</a>
+                        <a asp-action="Delete" onclick="return confirm('Are You Sure To Delete This?')" asp-controller="Employee" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                        <a asp-action="Details" asp-controller="Employee" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                    </td>
+                </tr>
+                 idNo++;
+                }                      
+        </tbody>
+	</table>
+</div>
