@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApplication3.ModelConfiguration;
+using WebApplication3.DatabaseContext;
 
 #nullable disable
 
 namespace WebApplication3.Migrations
 {
-    [DbContext(typeof(EmployeeConfiguration))]
-    [Migration("20240129145404_createEmployee")]
-    partial class createEmployee
+    [DbContext(typeof(ApplicationContext))]
+    [Migration("20240204155914_createAlltable")]
+    partial class createAlltable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,7 +38,6 @@ namespace WebApplication3.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("EmployeeId")
-                        .HasMaxLength(10)
                         .HasColumnType("int");
 
                     b.Property<string>("JobLocation")
@@ -52,12 +51,60 @@ namespace WebApplication3.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<double>("Salary")
-                        .HasMaxLength(10)
                         .HasColumnType("float");
 
                     b.HasKey("Id");
 
                     b.ToTable("Employee", (string)null);
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.Student", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Post")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Student", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Dinajpur",
+                            Email = "juwel@gmail.com",
+                            Name = "Juwel",
+                            Phone = "01745264776",
+                            Post = "Internship"
+                        });
                 });
 #pragma warning restore 612, 618
         }
